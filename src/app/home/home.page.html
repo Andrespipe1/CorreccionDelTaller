@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Corrección del taller - Datos de usuario
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
+    <!-- Nombre del Evento -->
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre" type="text"></ion-input>
+    </ion-item>
+
+    <!-- Fecha del Evento -->
+    <ion-item>
+      <ion-label position="stacked">Cuando cumples años?</ion-label>
+      <ion-datetime 
+        formControlName="date"
+        displayFormat="DD/MM/YYYY"
+        min="2023-01-01"
+        max="2030-12-31"
+      ></ion-datetime>
+    </ion-item>
+
+    <!-- Descripción -->
+    <ion-item>
+      <ion-label position="floating">Intereses</ion-label>
+      <ion-textarea formControlName="description" rows="4"></ion-textarea>
+    </ion-item>
+
+
+
+    <!-- Tipo de Evento -->
+    <ion-item>
+      <ion-label>Selecciona tu sexo</ion-label>
+      <ion-select formControlName="sexo" placeholder="Seleccione uno">
+        <ion-select-option value="masculino">Masculino</ion-select-option>
+        <ion-select-option value="femenino">Femenino</ion-select-option>
+        <ion-select-option value="otros">Otros</ion-select-option>
+        <ion-select-option value="notiene">Prefiero no contestar</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Ubicación -->
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input formControlName="location" type="text"></ion-input>
+    </ion-item>
+
+    <!-- Asistentes Esperados -->
+    <ion-item>
+      <ion-label position="floating">Cuantos hermanos tiene?</ion-label>
+      <ion-input formControlName="brothers" type="number"></ion-input>
+    </ion-item>
+
+    <!-- Temas de Interés (Selección Múltiple) -->
+    <ion-item>
+      <ion-label>Temas de Interés</ion-label>
+      <ion-select formControlName="topics" multiple="true" placeholder="Seleccione varios">
+        <ion-select-option value="tecnologia">Tecnología</ion-select-option>
+        <ion-select-option value="negocios">Negocios</ion-select-option>
+        <ion-select-option value="educacion">Educación</ion-select-option>
+        <ion-select-option value="salud">Salud</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Es Gratuito -->
+    <ion-item>
+      <ion-checkbox formControlName="estudios"></ion-checkbox>
+      <ion-label>Esta estudiando?</ion-label>
+    </ion-item>
+
+    <!-- Botón de Envío -->
+    <ion-button color="danger" type="submit" expand="block" [disabled]="!eventForm.valid">
+      Guardar datos
+    </ion-button>
+  </form>
+
+  <!-- Mensaje de Confirmación -->
+  <ion-toast
+    [isOpen]="showSuccessToast"
+    message="Evento guardado correctamente!"
+    duration="3000"
+    (didDismiss)="showSuccessToast = false"
+  ></ion-toast>
+</ion-content>

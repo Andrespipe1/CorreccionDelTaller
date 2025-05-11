@@ -1,0 +1,7 @@
+{
+  "name": "miFormulario",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
